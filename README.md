@@ -26,19 +26,17 @@ You can easily view the logs, stop, or re-start the container with the following
 
 ## Attaching data directory to host filesystem
 
-In order to persist the Minecraft data, use the `-v` argument to map a directory of the host to
-``/data``:
-    docker run --name minecraft-dw20-116 -d -v /minecraft/dw20-116:/data -p 25565:25565 --name minecraft-dw20-116 joshuacherry/docker-minecraft-direwolf20-1.16:latest
+You will want to create a volume for mounting the container if you want to persist data.
 
-When attached in this way you can stop the server, edit the configuration under
-your attached ``/path/on/host`` and start the server again with `docker start
-CONTAINERID` to pick up the new configuration.
+    mkdir -p /minecraft/dw20-116
+    docker volume create --driver local --name dw20-116
+    docker run --name minecraft-dw20-116 -d -v dw20-116:/data -p 25565:25565 joshuacherry/docker-minecraft-direwolf20-1.16:latest
 
 ## Running this container as a service on Ubuntu
 
 If you intend to have this contain running as a service on an Ubuntu VM with docker, you can create a systemd service to manage the docker container by name.
 
-### Place this in /etc/systemd/system/dw20-116.service
+1. Place this in /etc/systemd/system/minecraft-dw20-116.service
 
     [Unit]
     Description=Direwolf20 1.16 Minecraft Service
@@ -52,3 +50,16 @@ If you intend to have this contain running as a service on an Ubuntu VM with doc
 
     [Install]
     WantedBy=multi-user.target
+
+2. modify permissions on the new file
+
+    chmod +x /etc/systemd/system/minecraft-dw20-116.service
+
+3. Reload the systemctl daemon
+
+    sudo systemctl daemon-reload
+
+4. Start and enable your service
+
+    sudo systemctl start minecraft-dw20-116.service
+    sudo systemctl enable minecraft-dw20-116.service
