@@ -33,3 +33,22 @@ In order to persist the Minecraft data, use the `-v` argument to map a directory
 When attached in this way you can stop the server, edit the configuration under
 your attached ``/path/on/host`` and start the server again with `docker start
 CONTAINERID` to pick up the new configuration.
+
+## Running this container as a service on Ubuntu
+
+If you intend to have this contain running as a service on an Ubuntu VM with docker, you can create a systemd service to manage the docker container by name.
+
+### Place this in /etc/systemd/system/dw20-116.service
+
+    [Unit]
+    Description=Direwolf20 1.16 Minecraft Service
+    Requires=docker.service
+    After=docker.service
+
+    [Service]
+    Restart=always
+    ExecStart=/usr/bin/docker start -a minecraft-dw20-116
+    ExecStop=/usr/bin/docker stop -t 2 minecraft-dw20-116
+
+    [Install]
+    WantedBy=multi-user.target
