@@ -21,4 +21,4 @@ ADD server.properties /tmp/server.properties
 WORKDIR /data
 
 CMD /start
-ENV JVM_OPTS -XX:+UseG1GC -Xmx4G -Xms6G -Dsun.rmi.dgc.server.gcInterval=2147483646 -XX:+UnlockExperimentalVMOptions -XX:G1NewSizePercent=20 -XX:G1ReservePercent=20 -XX:MaxGCPauseMillis=50 -XX:G1HeapRegionSize=32M
+ENV JVM_OPTS -XX:+UseG1GC -Xmx6G -Xms4G -Dsun.rmi.dgc.server.gcInterval=2147483646 -XX:+UnlockExperimentalVMOptions -XX:G1NewSizePercent=20 -XX:G1ReservePercent=20 -XX:MaxGCPauseMillis=50 -XX:G1HeapRegionSize=32M

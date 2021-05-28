@@ -28,7 +28,7 @@ You can easily view the logs, stop, or re-start the container with the following
 
 In order to persist the Minecraft data, use the `-v` argument to map a directory of the host to
 ``/data``:
-    docker run --name minecraft-dw20-116 -d -v /minecraft/dw20-116:/data -p 25565:25565 --name minecraft-dw20-116 joshuacherry/minecraft-direwolf20-1.16
+    docker run --name minecraft-dw20-116 -d -v /minecraft/dw20-116:/data -p 25565:25565 --name minecraft-dw20-116 joshuacherry/docker-minecraft-direwolf20-1.16:latest
 
 When attached in this way you can stop the server, edit the configuration under
 your attached ``/path/on/host`` and start the server again with `docker start
