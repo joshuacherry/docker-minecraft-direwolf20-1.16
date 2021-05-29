@@ -38,28 +38,28 @@ If you intend to have this contain running as a service on an Ubuntu VM with doc
 
 1. Place this in /etc/systemd/system/minecraft-dw20-116.service
 
-    [Unit]
-    Description=Direwolf20 1.16 Minecraft Service
-    Requires=docker.service
-    After=docker.service
+        [Unit]
+        Description=Direwolf20 1.16 Minecraft Service
+        Requires=docker.service
+        After=docker.service
 
-    [Service]
-    Restart=always
-    ExecStart=/usr/bin/docker start -a minecraft-dw20-116
-    ExecStop=/usr/bin/docker stop -t 2 minecraft-dw20-116
+        [Service]
+        Restart=always
+        ExecStart=/usr/bin/docker start -a minecraft-dw20-116
+        ExecStop=/usr/bin/docker stop -t 2 minecraft-dw20-116
 
-    [Install]
-    WantedBy=multi-user.target
+        [Install]
+        WantedBy=multi-user.target
 
 2. modify permissions on the new file
 
-    chmod +x /etc/systemd/system/minecraft-dw20-116.service
+        chmod +x /etc/systemd/system/minecraft-dw20-116.service
 
 3. Reload the systemctl daemon
 
-    sudo systemctl daemon-reload
+        sudo systemctl daemon-reload
 
 4. Start and enable your service
 
-    sudo systemctl start minecraft-dw20-116.service
-    sudo systemctl enable minecraft-dw20-116.service
+        sudo systemctl start minecraft-dw20-116.service
+        sudo systemctl enable minecraft-dw20-116.service
